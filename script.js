@@ -1,354 +1,426 @@
-// ==================== DOM Elements ====================
-const menuToggle = document.getElementById('menuToggle');
-const navLinks = document.querySelector('.nav-links');
-const newsletterForm = document.getElementById('newsletterForm');
-const nameInput = document.getElementById('nameInput');
-const emailInput = document.getElementById('emailInput');
-const formMessage = document.getElementById('formMessage');
+/**
+ * CRISTIANO PIROLLI - LANDING PAGE
+ * Script.js - Interatividade, Carrossel e Validações
+ */
 
-// ==================== Mobile Menu Toggle ====================
-menuToggle?.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-    menuToggle.textContent = navLinks.classList.contains('open') ? '✕' : '≡';
-});
+// ============================================
+// MOBILE MENU
+// ============================================
 
-// Fechar menu ao clicar em um link
-document.querySelectorAll('.nav-links a').forEach(link => {
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navbarLinks = document.getElementById('navbarLinks');
+
+if (mobileMenuBtn) {
+  mobileMenuBtn.addEventListener('click', () => {
+    const isOpen = navbarLinks.classList.toggle('active');
+    mobileMenuBtn.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Fechar menu ao clicar em um link
+  navbarLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        menuToggle.textContent = '≡';
+      navbarLinks.classList.remove('active');
+      mobileMenuBtn.setAttribute('aria-expanded', false);
     });
+  });
+}
+
+// ============================================
+// CARROSSEL DE PORTFÓLIO
+// ============================================
+
+class Carousel {
+  constructor(carouselId) {
+    this.carouselId = carouselId;
+    this.slides = document.querySelectorAll(`.carousel-container:has([data-carousel="${carouselId}"]) .carousel-slide`);
+    this.dots = document.querySelectorAll(`.carousel-dot[data-carousel="${carouselId}"]`);
+    this.currentSlide = 0;
+    this.autoplayInterval = null;
+
+    if (this.slides.length === 0) return;
+
+    this.init();
+  }
+
+  init() {
+    // Event listeners para setas
+    const prevBtn = document.querySelector(`.carousel-arrow.prev[data-carousel="${this.carouselId}"]`);
+    const nextBtn = document.querySelector(`.carousel-arrow.next[data-carousel="${this.carouselId}"]`);
+
+    if (prevBtn) prevBtn.addEventListener('click', () => this.prev());
+    if (nextBtn) nextBtn.addEventListener('click', () => this.next());
+
+    // Event listeners para dots
+    this.dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => this.goToSlide(index));
+    });
+
+    // Autoplay
+    this.startAutoplay();
+
+    // Pausar autoplay ao interagir
+    document.querySelector(`.carousel-container:has([data-carousel="${this.carouselId}"])`)?.addEventListener('mouseenter', () => this.stopAutoplay());
+    document.querySelector(`.carousel-container:has([data-carousel="${this.carouselId}"])`)?.addEventListener('mouseleave', () => this.startAutoplay());
+  }
+
+  showSlide(index) {
+    // Validar índice
+    if (index < 0) {
+      this.currentSlide = this.slides.length - 1;
+    } else if (index >= this.slides.length) {
+      this.currentSlide = 0;
+    } else {
+      this.currentSlide = index;
+    }
+
+    // Remover classe active de todos os slides
+    this.slides.forEach(slide => slide.classList.remove('active'));
+    this.dots.forEach(dot => dot.classList.remove('active'));
+
+    // Adicionar classe active ao slide atual
+    this.slides[this.currentSlide].classList.add('active');
+    this.dots[this.currentSlide].classList.add('active');
+  }
+
+  next() {
+    this.showSlide(this.currentSlide + 1);
+  }
+
+  prev() {
+    this.showSlide(this.currentSlide - 1);
+  }
+
+  goToSlide(index) {
+    this.showSlide(index);
+  }
+
+  startAutoplay() {
+    this.autoplayInterval = setInterval(() => {
+      this.next();
+    }, 5000); // 5 segundos
+  }
+
+  stopAutoplay() {
+    if (this.autoplayInterval) {
+      clearInterval(this.autoplayInterval);
+    }
+  }
+}
+
+// Inicializar carrosséis
+document.addEventListener('DOMContentLoaded', () => {
+  new Carousel('carousel-1');
+  new Carousel('carousel-2');
 });
 
-// ==================== Smooth Scroll Function ====================
-function scrollToElement(elementId) {
-    const element = document.getElementById(elementId);
-    if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-    }
-}
+// ============================================
+// VALIDAÇÃO E ENVIO DE NEWSLETTER
+// ============================================
 
-// ==================== Newsletter Form Handler ====================
-function handleNewsletter(event) {
-    event.preventDefault();
-    
-    const name = nameInput.value.trim();
-    const email = emailInput.value.trim();
-    
-    // Reset message
-    formMessage.style.display = 'none';
-    formMessage.textContent = '';
-    
-    // Validar formulário
-    if (!name || !email) {
-        showMessage('Por favor, preencha todos os campos.', 'error');
-        return;
+const newsletterForm = document.getElementById('newsletterForm');
+
+if (newsletterForm) {
+  newsletterForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('newsletterName').value.trim();
+    const email = document.getElementById('newsletterEmail').value.trim();
+    const messageDiv = document.getElementById('newsletterMessage');
+
+    // Validações
+    if (!name || name.length < 3) {
+      showMessage(messageDiv, 'Por favor, insira um nome válido.', 'error');
+      return;
     }
-    
-    // Validar email
+
     if (!isValidEmail(email)) {
-        showMessage('Por favor, insira um email válido.', 'error');
-        return;
+      showMessage(messageDiv, 'Por favor, insira um email válido.', 'error');
+      return;
     }
-    
-    // Desabilitar botão durante envio
-    const submitButton = newsletterForm.querySelector('.btn-subscribe');
-    submitButton.disabled = true;
-    submitButton.textContent = 'Inscrevendo...';
-    
-    // Dados do formulário
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('email', email);
-    
-    // Enviar para Formspree
-    const formspreeUrl = 'https://formspree.io/f/mbdabqdn';
-    
-    // Enviar para Formspree
-    fetch(formspreeUrl, {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
-    .then(response => {
-        if (response.ok) {
-            showMessage(`✓ Obrigado, ${name}! Já recebemos sua inscrição. Você receberá novidades no seu email!`, 'success');
-            newsletterForm.reset();
-            
-            // Rastrear evento
-            trackEvent('newsletter_signup', {
-                email: email,
-                name: name
-            });
-        } else {
-            showMessage('Erro ao inscrever. Tente novamente.', 'error');
-        }
-    })
-    .catch(error => {
-        console.error('Erro:', error);
-        showMessage('Erro de conexão. Tente novamente.', 'error');
-    })
-    .finally(() => {
-        submitButton.disabled = false;
-        submitButton.textContent = 'Quero receber as dicas';
-    });
+
+    // Simular envio (sem backend)
+    showMessage(messageDiv, '⏳ Processando...', 'info');
+
+    setTimeout(() => {
+      // Simular sucesso
+      showMessage(messageDiv, '✅ Inscrição realizada com sucesso! Verifique seu email.', 'success');
+
+      // Limpar formulário
+      newsletterForm.reset();
+
+      // Remover mensagem após 5 segundos
+      setTimeout(() => {
+        messageDiv.textContent = '';
+        messageDiv.classList.remove('success', 'error', 'info');
+      }, 5000);
+    }, 1000);
+  });
 }
 
-// ==================== Utilities ====================
+// ============================================
+// VALIDAÇÃO E ENVIO DO FORMULÁRIO DE CONTATO
+// ============================================
+
+const contactForm = document.getElementById('contactForm');
+
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('contactName').value.trim();
+    const email = document.getElementById('contactEmail').value.trim();
+    const phone = document.getElementById('contactPhone').value.trim();
+    const service = document.getElementById('contactService').value;
+    const message = document.getElementById('contactMessage').value.trim();
+    const messageDiv = document.querySelector('.contact-form .form-message');
+
+    // Validações
+    if (!name || name.length < 3) {
+      showMessage(messageDiv, 'Por favor, insira um nome válido.', 'error');
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      showMessage(messageDiv, 'Por favor, insira um email válido.', 'error');
+      return;
+    }
+
+    if (!isValidPhone(phone)) {
+      showMessage(messageDiv, 'Por favor, insira um telefone válido.', 'error');
+      return;
+    }
+
+    if (!service) {
+      showMessage(messageDiv, 'Por favor, selecione um tipo de serviço.', 'error');
+      return;
+    }
+
+    if (!message || message.length < 10) {
+      showMessage(messageDiv, 'Por favor, insira uma mensagem com pelo menos 10 caracteres.', 'error');
+      return;
+    }
+
+    // Simular envio (sem backend)
+    showMessage(messageDiv, '⏳ Enviando solicitação...', 'info');
+
+    setTimeout(() => {
+      // Simular sucesso
+      showMessage(messageDiv, '✅ Solicitação enviada com sucesso! Entraremos em contato em breve.', 'success');
+
+      // Limpar formulário
+      contactForm.reset();
+
+      // Fechar modal após 2 segundos
+      setTimeout(() => {
+        document.getElementById('contactModal').style.display = 'none';
+        messageDiv.textContent = '';
+        messageDiv.classList.remove('success', 'error', 'info');
+      }, 2000);
+    }, 1500);
+  });
+}
+
+// ============================================
+// FUNÇÕES AUXILIARES
+// ============================================
+
+/**
+ * Validar email
+ */
 function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
 }
 
-function showMessage(message, type) {
-    formMessage.textContent = message;
-    formMessage.className = `form-message ${type}`;
-    formMessage.style.display = 'block';
-    
-    // Auto-hide após 5 segundos se ffor sucesso
-    if (type === 'success') {
-        setTimeout(() => {
-            formMessage.style.display = 'none';
-        }, 5000);
+/**
+ * Validar telefone
+ */
+function isValidPhone(phone) {
+  // Remove caracteres não numéricos
+  const phoneNumbers = phone.replace(/\D/g, '');
+  // Verifica se tem entre 10 e 11 dígitos
+  return phoneNumbers.length >= 10 && phoneNumbers.length <= 11;
+}
+
+/**
+ * Exibir mensagem de validação
+ */
+function showMessage(element, text, type) {
+  if (!element) return;
+
+  element.textContent = text;
+  element.classList.remove('success', 'error', 'info');
+  element.classList.add(type);
+  element.style.display = 'block';
+}
+
+// ============================================
+// FECHAR MODAL AO CLICAR FORA
+// ============================================
+
+const contactModal = document.getElementById('contactModal');
+
+if (contactModal) {
+  contactModal.addEventListener('click', (e) => {
+    if (e.target === contactModal) {
+      contactModal.style.display = 'none';
     }
+  });
+
+  // Fechar modal com ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && contactModal.style.display === 'flex') {
+      contactModal.style.display = 'none';
+    }
+  });
 }
 
-// ==================== Scroll Animations ====================
+// ============================================
+// SMOOTH SCROLL PARA ÂNCORAS
+// ============================================
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const href = this.getAttribute('href');
+
+    // Verificar se é uma âncora válida
+    if (href !== '#' && document.querySelector(href)) {
+      e.preventDefault();
+
+      const target = document.querySelector(href);
+      const offsetTop = target.offsetTop - 80; // Compensar altura da navbar
+
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// ============================================
+// ANIMAÇÃO DE ENTRADA PARA ELEMENTOS
+// ============================================
+
 const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.animation = 'slideInUp 0.6s ease-out';
-            observer.unobserve(entry.target);
-        }
-    });
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
 }, observerOptions);
 
-// Observar elementos com data-aos
-document.querySelectorAll('[data-aos]').forEach(element => {
-    element.style.opacity = '0';
-    observer.observe(element);
+// Observar elementos com animação
+document.querySelectorAll('.service-card, .process-step, .benefit-item, .portfolio-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+  observer.observe(el);
 });
 
-// ==================== Navbar Scroll Effect ====================
-let lastScrollTop = 0;
+// ============================================
+// NAVBAR STICKY COM SHADOW
+// ============================================
+
 const navbar = document.querySelector('.navbar');
 
-window.addEventListener('scroll', () => {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    // Adicionar sombra ao navbar quando scrollar
-    if (scrollTop > 10) {
-        navbar.style.boxShadow = '0 5px 20px rgba(102, 126, 234, 0.1)';
+if (navbar) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar.style.boxShadow = '0 10px 15px rgba(0, 0, 0, 0.2)';
     } else {
-        navbar.style.boxShadow = 'none';
+      navbar.style.boxShadow = 'var(--shadow-md)';
     }
-    
-    lastScrollTop = scrollTop;
-});
-
-// ==================== Analytics Helper ====================
-function trackEvent(eventName, eventData) {
-    // Aqui você implementaria rastreamento com Google Analytics ou similar
-    // Exemplo:
-    // if (typeof gtag !== 'undefined') {
-    //     gtag('event', eventName, eventData);
-    // }
-    console.log(`Event tracked: ${eventName}`, eventData);
+  });
 }
 
+// ============================================
+// CONTADOR ANIMADO (NÚMEROS DE AUTORIDADE)
+// ============================================
 
-// ==================== Page Load Animation ====================
-document.addEventListener('DOMContentLoaded', () => {
-    // Animação ao carregar a página
-    console.log('✓ Landing page carregada com sucesso!');
-});
+let hasAnimated = false;
 
-// ==================== Service Cards Hover Effect ====================
-document.querySelectorAll('.service-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-10px)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0)';
-    });
-});
+const authoritySection = document.querySelector('.authority');
 
-// ==================== Portfolio Cards Click Handler ====================
-document.querySelectorAll('.portfolio-card').forEach(card => {
-    card.addEventListener('click', function() {
-        trackEvent('portfolio_click', {
-            project: this.querySelector('h3').textContent
-        });
+if (authoritySection) {
+  const authorityObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !hasAnimated) {
+        hasAnimated = true;
+        animateCounters();
+      }
     });
-});
+  }, { threshold: 0.5 });
 
-// ==================== Preload Images ====================
-function preloadImages() {
-    const images = document.querySelectorAll('img');
-    images.forEach(img => {
-        const newImg = new Image();
-        newImg.src = img.src;
-    });
+  authorityObserver.observe(authoritySection);
 }
 
-// Chamar preload quando o DOM estiver pronto
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', preloadImages);
-} else {
-    preloadImages();
+function animateCounters() {
+  const counters = document.querySelectorAll('.authority-number');
+
+  counters.forEach(counter => {
+    const target = parseInt(counter.textContent);
+    let current = 0;
+    const increment = target / 50; // 50 frames de animação
+    const duration = 2000; // 2 segundos
+    const frameTime = duration / 50;
+
+    const interval = setInterval(() => {
+      current += increment;
+
+      if (current >= target) {
+        counter.textContent = target + '+';
+        clearInterval(interval);
+      } else {
+        counter.textContent = Math.floor(current) + '+';
+      }
+    }, frameTime);
+  });
 }
 
-// ==================== Keyboard Navigation ====================
-document.addEventListener('keydown', (e) => {
-    // ESC para fechar menu mobile
-    if (e.key === 'Escape' && navLinks.style.display === 'flex') {
-        navLinks.style.display = 'none';
-        menuToggle.textContent = '≡';
-    }
-    
-    // Alt + N para focar no campo de newsletter (acessibilidade)
-    if (e.altKey && e.key === 'n') {
-        nameInput.focus();
-    }
+// ============================================
+// ANALYTICS E TRACKING (SIMULADO)
+// ============================================
+
+/**
+ * Rastrear cliques em CTAs
+ */
+function trackCTAClick(ctaName) {
+  console.log(`CTA clicado: ${ctaName}`);
+  // Aqui você poderia enviar dados para Google Analytics ou outro serviço
+}
+
+// Rastrear cliques nos botões principais
+document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const text = btn.textContent.trim();
+    trackCTAClick(text);
+  });
 });
 
-// ==================== Social Links ====================
-// Atualizar links de contato com informações reais
-document.addEventListener('DOMContentLoaded', () => {
-    // Substituir links de placeholder por links reais
-    // const githubLink = document.querySelector('.contact-link[href*="github"]');
-    // const linkedinLink = document.querySelector('.contact-link[href*="linkedin"]');
-    // const emailLink = document.querySelector('.contact-link[href*="mailto"]');
-    
-    // githubLink?.setAttribute('href', 'https://github.com/seu-usuario');
-    // linkedinLink?.setAttribute('href', 'https://linkedin.com/in/seu-perfil');
-    // emailLink?.setAttribute('href', 'mailto:seu.email@example.com');
-});
+// ============================================
+// PREFETCH DE RECURSOS
+// ============================================
 
-// ==================== Performance Optimization ====================
-// Lazy Loading para images (se necessário adicionar imagens depois)
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.add('loaded');
-                observer.unobserve(img);
-            }
-        });
-    });
-    
-    document.querySelectorAll('img[data-src]').forEach(img => {
-        imageObserver.observe(img);
-    });
+// Prefetch de imagens e recursos para melhor performance
+if ('requestIdleCallback' in window) {
+  requestIdleCallback(() => {
+    // Prefetch de fontes e recursos críticos
+    const link = document.createElement('link');
+    link.rel = 'prefetch';
+    link.href = 'https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;500;600;700&display=swap';
+    document.head.appendChild(link);
+  });
 }
 
-// ==================== Error Handling ====================
-window.addEventListener('error', (event) => {
-    console.error('Erro detectado:', event.error);
-    // Em produção, você poderia enviar isto para um serviço de log
-});
+// ============================================
+// INICIALIZAÇÃO
+// ============================================
 
-// ==================== Contact Link Handlers ====================
-document.querySelectorAll('.contact-link').forEach(link => {
-    link.addEventListener('click', function(e) {
-        const linkType = this.textContent.includes('Email') ? 'email' : 
-                        this.textContent.includes('LinkedIn') ? 'linkedin' : 'github';
-        trackEvent('contact_link_clicked', { type: linkType });
-    });
-});
-
-// ==================== Form Validation Helpers ====================
-function validateFormInputs() {
-    nameInput.addEventListener('blur', function() {
-        if (this.value.trim().length < 2) {
-            this.style.borderColor = 'var(--error-color)';
-        } else {
-            this.style.borderColor = 'var(--border-color)';
-        }
-    });
-    
-    emailInput.addEventListener('blur', function() {
-        if (!isValidEmail(this.value)) {
-            this.style.borderColor = 'var(--error-color)';
-        } else {
-            this.style.borderColor = 'var(--border-color)';
-        }
-    });
-}
-
-validateFormInputs();
-
-// ==================== Scroll to Top Button (opcional) ====================
-function createScrollToTopButton() {
-    const button = document.createElement('button');
-    button.innerHTML = '↑';
-    button.className = 'scroll-to-top';
-    button.style.cssText = `
-        position: fixed;
-        bottom: 2rem;
-        right: 2rem;
-        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        color: white;
-        border: none;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        cursor: pointer;
-        display: none;
-        z-index: 999;
-        font-size: 1.5rem;
-        transition: all 0.3s ease;
-        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-    `;
-    
-    document.body.appendChild(button);
-    
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            button.style.display = 'flex';
-            button.style.alignItems = 'center';
-            button.style.justifyContent = 'center';
-        } else {
-            button.style.display = 'none';
-        }
-    });
-    
-    button.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    
-    button.addEventListener('mouseenter', function() {
-        this.style.transform = 'scale(1.1)';
-    });
-    
-    button.addEventListener('mouseleave', function() {
-        this.style.transform = 'scale(1)';
-    });
-}
-
-createScrollToTopButton();
-
-// ==================== Responsive Adjustments ====================
-function handleResponsive() {
-    const isMobile = window.innerWidth < 768;
-    
-    if (isMobile && navLinks?.style.display === 'flex') {
-        navLinks.style.display = 'none';
-        menuToggle.textContent = '≡';
-    }
-}
-
-window.addEventListener('resize', handleResponsive);
-
-console.log('JavaScript carregado e pronto! 🚀');
+console.log('✅ Landing Page Cristiano Pirolli - Script carregado com sucesso');

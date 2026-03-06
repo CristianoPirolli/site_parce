@@ -32,3 +32,6 @@ logs/
 # Node
 package-lock.json
 yarn.lock
+
+#images
+/images/

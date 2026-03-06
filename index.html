@@ -1,396 +1,620 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Criamos landing pages e sites profissionais que divulgam seus serviços, atraem clientes e geram resultados reais para o seu negócio.">
-    <title>Cristiano Pirolli | Landing Pages que Convertem</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Landing pages, sites institucionais e sistemas web sob medida. Especialista em desenvolvimento web premium para empresas que querem presença digital profissional e geração de oportunidades.">
+  <meta name="theme-color" content="#0a0e27">
+  <title>Cristiano Pirolli | Especialista em Landing Pages e Desenvolvimento Web Premium</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">
-                <span class="logo-icon">⚡</span>
-                <span class="logo-text">Cristiano Pirolli</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#servicos">Serviços</a></li>
-                <li><a href="#como-funciona">Como Funciona</a></li>
-                <li><a href="#projetos">Projetos</a></li>
-                <li><a href="#contato" class="nav-cta">Solicitar Orçamento</a></li>
-            </ul>
-            <button class="menu-toggle" id="menuToggle">≡</button>
-        </div>
-    </nav>
+  <!-- ============================================
+       NAVBAR
+       ============================================ -->
+  <nav class="navbar" role="navigation" aria-label="Navegação principal">
+    <div class="navbar-content container">
+      <div class="navbar-logo">
+        <span>CP</span>
+      </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="stars"></div>
-        <div class="hero-glow"></div>
-        <div class="container hero-content">
-            <div class="hero-badge">Landing Pages &amp; Sites Profissionais</div>
-            <h1 class="title">
-                Seu negócio merece uma<br>
-                <span class="highlight">presença digital que vende</span>
-            </h1>
-            <p class="subtitle">
-                Criamos landing pages e sites que apresentam seus serviços com clareza,<br>
-                atraem o público certo e transformam visitantes em clientes.
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu" aria-expanded="false">
+        ☰
+      </button>
+
+      <ul class="navbar-links" id="navbarLinks">
+        <li><a href="#hero">Início</a></li>
+        <li><a href="#services">Serviços</a></li>
+        <li><a href="#portfolio">Portfólio</a></li>
+        <li><a href="#process">Processo</a></li>
+        <li><a href="#contact">Contato</a></li>
+      </ul>
+
+      <div class="navbar-cta">
+        <button class="btn btn-primary btn-small" onclick="document.getElementById('contactModal').style.display='flex'" aria-label="Solicitar orçamento">
+          Solicitar Orçamento
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================
+       HERO
+       ============================================ -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>
+            Sua presença digital
+            <span class="highlight">que converte</span>
+          </h1>
+          <p class="hero-subtitle">
+            Landing pages, sites institucionais e sistemas web sob medida. Desenvolvemos soluções digitais estratégicas que geram oportunidades reais para seu negócio.
+          </p>
+
+          <div class="hero-proof">
+            <div class="hero-proof-item">
+              <div class="hero-proof-text">
+                <strong>Projetos Entregues</strong>
+                <span>Empresas em crescimento</span>
+              </div>
+            </div>
+            <div class="hero-proof-item">
+              <div class="hero-proof-text">
+                <strong>Satisfação</strong>
+                <span>Clientes que voltam</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-ctas">
+            <button class="btn btn-primary btn-large" onclick="document.getElementById('contactModal').style.display='flex'">
+              Começar Agora
+            </button>
+            <button class="btn btn-secondary btn-large" onclick="document.getElementById('portfolioSection').scrollIntoView({behavior: 'smooth'})">
+              Ver Portfólio
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-visual-content">
+            <div class="hero-visual-icon">💻</div>
+            <p class="hero-visual-text">Desenvolvimento web estratégico</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SERVIÇOS
+       ============================================ -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="services-header">
+        <h2>Serviços Especializados</h2>
+        <p>Soluções digitais completas para impulsionar seu negócio</p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Landing Pages -->
+        <div class="service-card">
+          <div class="service-icon">🎯</div>
+          <h3>Landing Pages</h3>
+          <p>
+            Páginas de conversão otimizadas para capturar leads e gerar vendas. Cada elemento é estrategicamente posicionado para máxima taxa de conversão.
+          </p>
+          <ul class="service-features">
+            <li>Design focado em conversão</li>
+            <li>Otimização para SEO</li>
+            <li>Testes A/B integrados</li>
+            <li>Integração com ferramentas de marketing</li>
+          </ul>
+        </div>
+
+        <!-- Sites Institucionais -->
+        <div class="service-card">
+          <div class="service-icon">🏢</div>
+          <h3>Sites Institucionais</h3>
+          <p>
+            Presença digital profissional que reflete a qualidade do seu negócio. Websites modernos que transmitem confiança e credibilidade.
+          </p>
+          <ul class="service-features">
+            <li>Design responsivo premium</li>
+            <li>CMS intuitivo e fácil manutenção</li>
+            <li>Blog integrado para marketing</li>
+            <li>Segurança e performance otimizadas</li>
+          </ul>
+        </div>
+
+        <!-- Sistemas Web -->
+        <div class="service-card">
+          <div class="service-icon">⚙️</div>
+          <h3>Sistemas Web Sob Medida</h3>
+          <p>
+            Aplicações web customizadas para automatizar processos e aumentar produtividade. Desenvolvidas com tecnologias modernas e escaláveis.
+          </p>
+          <ul class="service-features">
+            <li>Arquitetura escalável</li>
+            <li>Integração com APIs externas</li>
+            <li>Dashboard e relatórios</li>
+            <li>Suporte técnico contínuo</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PROCESSO
+       ============================================ -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="process-header">
+        <h2>Nosso Processo</h2>
+        <p>Metodologia comprovada para entregar resultados excepcionais</p>
+      </div>
+
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="process-step-number">1</div>
+          <h3>Descoberta</h3>
+          <p>
+            Entendemos profundamente seu negócio, objetivos e público-alvo para criar estratégia digital efetiva.
+          </p>
+        </div>
+
+        <div class="process-step">
+          <div class="process-step-number">2</div>
+          <h3>Estratégia</h3>
+          <p>
+            Definimos arquitetura, funcionalidades e roadmap do projeto com base em dados e melhores práticas.
+          </p>
+        </div>
+
+        <div class="process-step">
+          <div class="process-step-number">3</div>
+          <h3>Design</h3>
+          <p>
+            Criamos interfaces visuais premium que aliam beleza, usabilidade e conversão em cada detalhe.
+          </p>
+        </div>
+
+        <div class="process-step">
+          <div class="process-step-number">4</div>
+          <h3>Desenvolvimento</h3>
+          <p>
+            Codificação limpa, performática e escalável utilizando tecnologias modernas e melhores práticas.
+          </p>
+        </div>
+
+        <div class="process-step">
+          <div class="process-step-number">5</div>
+          <h3>Testes</h3>
+          <p>
+            Validação completa de funcionalidades, performance e compatibilidade em todos os dispositivos.
+          </p>
+        </div>
+
+        <div class="process-step">
+          <div class="process-step-number">6</div>
+          <h3>Entrega</h3>
+          <p>
+            Deploy, treinamento e suporte contínuo para garantir sucesso do seu projeto a longo prazo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PORTFÓLIO
+       ============================================ -->
+  <section class="portfolio" id="portfolio" id="portfolioSection">
+    <div class="container">
+      <div class="portfolio-header">
+        <h2>Portfólio</h2>
+        <p>Projetos que geraram resultados reais para nossos clientes</p>
+      </div>
+
+      <div class="portfolio-grid">
+        <!-- Portal de Procedimentos JP Contábil -->
+        <div class="portfolio-card">
+          <div class="carousel-container">
+            <div class="carousel-slide active">
+              <div class="carousel-slide-content">
+                <div class="carousel-slide-icon">📋</div>
+                <p>Dashboard de Procedimentos</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="carousel-slide-content">
+                <div class="carousel-slide-icon">🔍</div>
+                <p>Busca Avançada e Filtros</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="carousel-slide-content">
+                <div class="carousel-slide-icon">📊</div>
+                <p>Relatórios e Análises</p>
+              </div>
+            </div>
+
+            <button class="carousel-arrow prev" aria-label="Slide anterior" data-carousel="carousel-1">❮</button>
+            <button class="carousel-arrow next" aria-label="Próximo slide" data-carousel="carousel-1">❯</button>
+
+            <div class="carousel-controls">
+              <button class="carousel-dot active" data-carousel="carousel-1" data-slide="0" aria-label="Slide 1"></button>
+              <button class="carousel-dot" data-carousel="carousel-1" data-slide="1" aria-label="Slide 2"></button>
+              <button class="carousel-dot" data-carousel="carousel-1" data-slide="2" aria-label="Slide 3"></button>
+            </div>
+          </div>
+
+          <div class="portfolio-content">
+            <h3>Portal de Procedimentos - JP Contábil</h3>
+            <p class="portfolio-description">
+              Sistema web completo para gerenciamento e consulta de procedimentos contábeis. Desenvolvido com interface intuitiva, busca avançada e relatórios personalizados.
             </p>
-            <div class="hero-actions">
-                <a href="#contato" class="cta-button">Quero minha Landing Page</a>
-                <a href="#servicos" class="cta-secondary">Ver o que faço</a>
+            <div class="portfolio-tags">
+              <span class="portfolio-tag">React</span>
+              <span class="portfolio-tag">Node.js</span>
+              <span class="portfolio-tag">PostgreSQL</span>
+              <span class="portfolio-tag">Dashboard</span>
             </div>
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-number">20+</span>
-                    <span class="stat-label">Projetos entregues</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Responsivo &amp; otimizado</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-item">
-                    <span class="stat-number">72h</span>
-                    <span class="stat-label">Prazo médio de entrega</span>
-                </div>
-            </div>
+          </div>
         </div>
-    </section>
 
-    <!-- Para quem é Section -->
-    <section class="for-who">
-        <div class="container">
-            <p class="for-who-label">Ideal para quem precisa divulgar seus serviços:</p>
-            <div class="for-who-grid">
-                <div class="for-who-item">🍕 Restaurantes &amp; Delivery</div>
-                <div class="for-who-item">💇 Salões &amp; Estética</div>
-                <div class="for-who-item">⚖️ Advogados &amp; Consultorias</div>
-                <div class="for-who-item">🏥 Clínicas &amp; Saúde</div>
-                <div class="for-who-item">🏗️ Construtoras &amp; Reformas</div>
-                <div class="for-who-item">📸 Fotógrafos &amp; Criativos</div>
-                <div class="for-who-item">🚗 Oficinas &amp; Autopeças</div>
-                <div class="for-who-item">💼 Qualquer negócio local</div>
+        <!-- TRAFEGANDO SaaS -->
+        <div class="portfolio-card">
+          <div class="carousel-container">
+            <div class="carousel-slide active">
+              <div class="carousel-slide-content">
+                <div class="carousel-slide-icon">🚗</div>
+                <p>Gestão de Autoescolas</p>
+              </div>
             </div>
+            <div class="carousel-slide">
+              <div class="carousel-slide-content">
+                <div class="carousel-slide-icon">📅</div>
+                <p>Calendário de Aulas</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="carousel-slide-content">
+                <div class="carousel-slide-icon">💼</div>
+                <p>CRM e Gestão de Clientes</p>
+              </div>
+            </div>
+
+            <button class="carousel-arrow prev" aria-label="Slide anterior" data-carousel="carousel-2">❮</button>
+            <button class="carousel-arrow next" aria-label="Próximo slide" data-carousel="carousel-2">❯</button>
+
+            <div class="carousel-controls">
+              <button class="carousel-dot active" data-carousel="carousel-2" data-slide="0" aria-label="Slide 1"></button>
+              <button class="carousel-dot" data-carousel="carousel-2" data-slide="1" aria-label="Slide 2"></button>
+              <button class="carousel-dot" data-carousel="carousel-2" data-slide="2" aria-label="Slide 3"></button>
+            </div>
+          </div>
+
+          <div class="portfolio-content">
+            <h3>TRAFEGANDO - SaaS para Autoescolas</h3>
+            <p class="portfolio-description">
+              Plataforma SaaS completa com CRM, calendário de aulas, gestão de alunos e relatórios. Solução escalável que atende centenas de autoescolas em todo Brasil.
+            </p>
+            <div class="portfolio-tags">
+              <span class="portfolio-tag">SaaS</span>
+              <span class="portfolio-tag">Vue.js</span>
+              <span class="portfolio-tag">Firebase</span>
+              <span class="portfolio-tag">CRM</span>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Services Section -->
-    <section id="servicos" class="services">
-        <div class="container">
-            <h2 class="section-title">O que eu faço</h2>
-            <p class="section-subtitle">Soluções digitais para divulgar e crescer o seu negócio</p>
+  <!-- ============================================
+       BENEFÍCIOS
+       ============================================ -->
+  <section class="benefits">
+    <div class="container">
+      <div class="benefits-header">
+        <h2>Por Que Escolher</h2>
+        <p>Diferenciais que geram resultados para seu negócio</p>
+      </div>
 
-            <!-- Serviço destaque -->
-            <div class="service-featured">
-                <div class="service-featured-badge">⭐ Mais procurado</div>
-                <div class="service-featured-content">
-                    <div class="service-featured-icon">🚀</div>
-                    <div>
-                        <h3>Landing Pages para Negócios</h3>
-                        <p>
-                            Uma página profissional e estratégica, criada para apresentar seus serviços, mostrar seu diferencial
-                            e converter visitantes em contatos ou clientes. Design moderno, carregamento rápido e otimizada
-                            para aparecer no Google.
-                        </p>
-                        <ul class="service-features">
-                            <li>Design exclusivo e personalizado para o seu negócio</li>
-                            <li>Otimização para celular (mais de 80% dos acessos)</li>
-                            <li>SEO local para aparecer nas buscas da sua cidade</li>
-                            <li>Integração com WhatsApp, Google Maps e redes sociais</li>
-                            <li>Formulário de contato e captura de leads</li>
-                            <li>Entrega rápida — em dias, não semanas</li>
-                        </ul>
-                    </div>
-                </div>
-                <a href="#contato" class="service-featured-cta">Solicitar Orçamento Grátis →</a>
-            </div>
-
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up">
-                    <div class="service-icon">🌐</div>
-                    <h3>Sites Institucionais</h3>
-                    <p>Sites completos para sua empresa com múltiplas páginas, área de blog, portfólio e integração com sistemas. Ideal para negócios que precisam de uma presença mais robusta.</p>
-                    <ul class="service-features-small">
-                        <li>✓ Múltiplas páginas</li>
-                        <li>✓ Blog &amp; conteúdo</li>
-                        <li>✓ Painel de gestão</li>
-                        <li>✓ Domínio &amp; hospedagem</li>
-                    </ul>
-                </div>
-
-                <div class="service-card" data-aos="fade-up">
-                    <div class="service-icon">⚙️</div>
-                    <h3>Sistemas Web</h3>
-                    <p>Aplicações web sob medida: cardápio digital, agendamento online, sistema de pedidos, área de clientes e painéis administrativos. Automatize processos do seu negócio.</p>
-                    <ul class="service-features-small">
-                        <li>✓ Banco de dados</li>
-                        <li>✓ Painel admin</li>
-                        <li>✓ Login seguro</li>
-                        <li>✓ Relatórios</li>
-                    </ul>
-                </div>
-
-                <div class="service-card" data-aos="fade-up">
-                    <div class="service-icon">💾</div>
-                    <h3>Aplicações Desktop</h3>
-                    <p>Softwares para Windows com interface intuitiva. Ideal para gestão interna, automação de tarefas, controle de estoque e operações que não dependem de internet.</p>
-                    <ul class="service-features-small">
-                        <li>✓ Funciona offline</li>
-                        <li>✓ Interface simples</li>
-                        <li>✓ Relatórios PDF</li>
-                        <li>✓ Suporte incluso</li>
-                    </ul>
-                </div>
-            </div>
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <div class="benefit-icon">⚡</div>
+          <div class="benefit-content">
+            <h3>Performance Otimizada</h3>
+            <p>Websites que carregam em milissegundos, melhorando SEO e experiência do usuário.</p>
+          </div>
         </div>
-    </section>
 
-    <!-- Como Funciona Section -->
-    <section id="como-funciona" class="how-it-works">
-        <div class="container">
-            <h2 class="section-title">Como funciona</h2>
-            <p class="section-subtitle">Do briefing à entrega, um processo simples e transparente</p>
-
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">01</div>
-                    <div class="step-icon">💬</div>
-                    <h3>Briefing</h3>
-                    <p>Conversamos sobre seu negócio, público, concorrentes e objetivos. Sem formulários complicados — uma boa conversa já resolve.</p>
-                </div>
-                <div class="step-arrow">→</div>
-                <div class="step-card">
-                    <div class="step-number">02</div>
-                    <div class="step-icon">🎨</div>
-                    <h3>Design</h3>
-                    <p>Crio um layout exclusivo com as cores e identidade do seu negócio. Você aprova antes de qualquer código ser escrito.</p>
-                </div>
-                <div class="step-arrow">→</div>
-                <div class="step-card">
-                    <div class="step-number">03</div>
-                    <div class="step-icon">⚡</div>
-                    <h3>Desenvolvimento</h3>
-                    <p>Transformo o design em um site real, rápido e responsivo. Você acompanha o progresso em tempo real.</p>
-                </div>
-                <div class="step-arrow">→</div>
-                <div class="step-card">
-                    <div class="step-number">04</div>
-                    <div class="step-icon">🚀</div>
-                    <h3>Entrega &amp; Suporte</h3>
-                    <p>Seu site vai ao ar com domínio configurado. Suporte garantido para ajustes e atualizações após a entrega.</p>
-                </div>
-            </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🎯</div>
+          <div class="benefit-content">
+            <h3>Foco em Conversão</h3>
+            <p>Cada elemento é estrategicamente posicionado para maximizar leads e vendas.</p>
+          </div>
         </div>
-    </section>
 
-    <!-- Portfolio Section (só 2 cards) -->
-    <section id="projetos" class="portfolio">
-        <div class="container">
-            <h2 class="section-title">Exemplos do meu trabalho</h2>
-            <p class="section-subtitle">Uma amostra de sistemas que já desenvolvi — seu projeto pode ser o próximo</p>
-
-            <div class="portfolio-grid-duo">
-                <div class="portfolio-card-large">
-                    <div class="portfolio-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                        <div class="portfolio-overlay">
-                            <span class="portfolio-category">Sistema Web</span>
-                            <div class="portfolio-tech-overlay">
-                                <span>Flask</span>
-                                <span>Python</span>
-                                <span>MySQL</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-body">
-                        <h3>Portal de Procedimentos — JP Contábil</h3>
-                        <p>
-                            Sistema interno desenvolvido para substituir o controle via Google Drive.
-                            Portal com autenticação segura, gerenciamento de usuários e procedimentos
-                            empresariais da empresa contábil.
-                        </p>
-                        <ul class="portfolio-highlights">
-                            <li>✓ Autenticação com criptografia PBKDF2</li>
-                            <li>✓ Controle de acesso por níveis</li>
-                            <li>✓ Gerenciamento de procedimentos internos</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="portfolio-card-large">
-                    <div class="portfolio-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                        <div class="portfolio-overlay">
-                            <span class="portfolio-category">Sistema Web + Desktop</span>
-                            <div class="portfolio-tech-overlay">
-                                <span>Python</span>
-                                <span>JavaScript</span>
-                                <span>Docker</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-body">
-                        <h3>Gestor Financeiro</h3>
-                        <p>
-                            Sistema completo de gestão financeira com controle de despesas mensais,
-                            relatórios e análise de fluxo de caixa. Backend e frontend desacoplados
-                            com containerização Docker.
-                        </p>
-                        <ul class="portfolio-highlights">
-                            <li>✓ Dashboard com análise de gastos</li>
-                            <li>✓ Cadastro e categorização de despesas</li>
-                            <li>✓ Arquitetura backend/frontend desacoplada</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="portfolio-cta">
-                <p>Quer ver como seu negócio ficaria em um site profissional?</p>
-                <a href="#contato" class="cta-button">Solicitar demonstração grátis →</a>
-            </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">📱</div>
+          <div class="benefit-content">
+            <h3>Responsivo 100%</h3>
+            <p>Experiência perfeita em desktop, tablet e mobile. Seus clientes em qualquer dispositivo.</p>
+          </div>
         </div>
-    </section>
 
-    <!-- Por que me escolher Section -->
-    <section class="why-choose">
-        <div class="container">
-            <h2 class="section-title">Por que o seu negócio precisa disso?</h2>
-            <p class="section-subtitle">Uma landing page bem feita trabalha por você 24 horas por dia</p>
-
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <div class="benefit-icon">📱</div>
-                    <h3>Encontrado no Google</h3>
-                    <p>Apareça quando seus clientes pesquisam pelos seus serviços na internet — antes dos seus concorrentes.</p>
-                </div>
-
-                <div class="benefit-item">
-                    <div class="benefit-icon">💰</div>
-                    <h3>Mais clientes, menos esforço</h3>
-                    <p>Seu site trabalha enquanto você dorme. Capture contatos e gere orçamentos automaticamente pelo WhatsApp.</p>
-                </div>
-
-                <div class="benefit-item">
-                    <div class="benefit-icon">🏆</div>
-                    <h3>Credibilidade profissional</h3>
-                    <p>Transmita confiança e profissionalismo. Clientes confiam mais em negócios com presença digital sólida.</p>
-                </div>
-
-                <div class="benefit-item">
-                    <div class="benefit-icon">🎯</div>
-                    <h3>Feito para converter</h3>
-                    <p>Design estratégico pensado para guiar o visitante até entrar em contato com você — não só para ser bonito.</p>
-                </div>
-
-                <div class="benefit-item">
-                    <div class="benefit-icon">⚡</div>
-                    <h3>Rápido e responsivo</h3>
-                    <p>Carregamento em menos de 3 segundos e perfeito em qualquer tela — do celular ao computador.</p>
-                </div>
-
-                <div class="benefit-item">
-                    <div class="benefit-icon">🔧</div>
-                    <h3>Suporte contínuo</h3>
-                    <p>Precisa atualizar preços, fotos ou texto? Estou disponível para manter seu site sempre atualizado.</p>
-                </div>
-            </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🔒</div>
+          <div class="benefit-content">
+            <h3>Segurança Premium</h3>
+            <p>Implementação de melhores práticas de segurança e conformidade com regulamentações.</p>
+          </div>
         </div>
-    </section>
 
-    <!-- Newsletter Section -->
-    <section id="newsletter" class="newsletter">
-        <div class="container">
-            <div class="newsletter-content">
-                <h2>Receba dicas de marketing digital</h2>
-                <p>Conteúdo prático para donos de negócio: como atrair mais clientes, melhorar sua presença online e crescer com consistência.</p>
-
-                <form id="newsletterForm" class="newsletter-form" onsubmit="handleNewsletter(event)">
-                    <div class="form-group">
-                        <input
-                            type="text"
-                            id="nameInput"
-                            placeholder="Seu nome"
-                            required
-                            aria-label="Seu nome"
-                        >
-                    </div>
-                    <div class="form-group">
-                        <input
-                            type="email"
-                            id="emailInput"
-                            placeholder="seu@email.com"
-                            required
-                            aria-label="Seu email"
-                        >
-                    </div>
-                    <button type="submit" class="btn-subscribe">Quero receber as dicas</button>
-                </form>
-
-                <div id="formMessage" class="form-message" style="display: none;"></div>
-                <p class="newsletter-disclaimer">Sem spam. Conteúdo útil, sem enrolação. Cancele quando quiser.</p>
-            </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">📈</div>
+          <div class="benefit-content">
+            <h3>Escalabilidade</h3>
+            <p>Arquitetura preparada para crescer com seu negócio sem comprometer performance.</p>
+          </div>
         </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contato" class="contact">
-        <div class="container">
-            <h2 class="section-title">Vamos conversar?</h2>
-            <p class="section-subtitle">Me conta o que você precisa. Respondo em menos de 24 horas.</p>
-
-            <div class="contact-highlight">
-                <div class="contact-highlight-icon">💬</div>
-                <div>
-                    <h3>Orçamento 100% gratuito</h3>
-                    <p>Sem compromisso. Veja quanto custaria ter uma landing page profissional para o seu negócio.</p>
-                </div>
-            </div>
-
-            <div class="contact-info">
-                <a href="mailto:seu.email@example.com" class="contact-link">
-                    <span class="contact-icon">✉️</span>
-                    <span class="contact-label">Email</span>
-                    <span class="contact-sub">seu.email@example.com</span>
-                </a>
-                <a href="https://wa.me/5500000000000" class="contact-link contact-link-highlight">
-                    <span class="contact-icon">💬</span>
-                    <span class="contact-label">WhatsApp</span>
-                    <span class="contact-sub">Resposta rápida</span>
-                </a>
-                <a href="https://linkedin.com" class="contact-link">
-                    <span class="contact-icon">💼</span>
-                    <span class="contact-label">LinkedIn</span>
-                    <span class="contact-sub">Conecte-se comigo</span>
-                </a>
-                <a href="https://github.com" class="contact-link">
-                    <span class="contact-icon">👨‍💻</span>
-                    <span class="contact-label">GitHub</span>
-                    <span class="contact-sub">Veja meu código</span>
-                </a>
-            </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">🤝</div>
+          <div class="benefit-content">
+            <h3>Suporte Contínuo</h3>
+            <p>Acompanhamento pós-entrega, manutenção e melhorias contínuas para seu sucesso.</p>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="logo">
-                    <span class="logo-icon">⚡</span>
-                    <span class="logo-text">Cristiano Pirolli</span>
-                </div>
-                <p class="footer-tagline">Landing pages que divulgam seus serviços e trazem resultados.</p>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Cristiano Pirolli. Desenvolvido com <span class="heart">❤️</span> e muito código.</p>
-            </div>
+  <!-- ============================================
+       NEWSLETTER
+       ============================================ -->
+  <section class="newsletter">
+    <div class="container">
+      <div class="newsletter-content">
+        <h2>Receba Insights de Web Design</h2>
+        <p>
+          Dicas, estratégias e tendências de desenvolvimento web diretamente no seu email.
+        </p>
+
+        <form class="newsletter-form" id="newsletterForm">
+          <div class="form-group">
+            <label for="newsletterName">Seu Nome</label>
+            <input
+              type="text"
+              id="newsletterName"
+              name="name"
+              placeholder="João Silva"
+              required
+              aria-label="Seu nome"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="newsletterEmail">Seu Email</label>
+            <input
+              type="email"
+              id="newsletterEmail"
+              name="email"
+              placeholder="seu@email.com"
+              required
+              aria-label="Seu email"
+            >
+          </div>
+
+          <div class="form-message" id="newsletterMessage"></div>
+
+          <button type="submit" class="btn btn-primary btn-large">
+            Inscrever-se
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CONTATO
+       ============================================ -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-content">
+        <h2>Vamos Conversar?</h2>
+        <p>
+          Pronto para transformar sua presença digital? Entre em contato através do seu canal preferido.
+        </p>
+      </div>
+
+      <div class="contact-buttons">
+        <a
+          href="https://wa.me/5511999999999?text=Olá%20Cristiano,%20gostaria%20de%20conhecer%20seus%20serviços"
+          class="contact-btn"
+          aria-label="Contato via WhatsApp"
+          title="WhatsApp"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          💬
+        </a>
+
+        <a
+          href="mailto:contato@cristianopirolli.com.br"
+          class="contact-btn"
+          aria-label="Enviar email"
+          title="Email"
+        >
+          ✉️
+        </a>
+
+        <a
+          href="https://linkedin.com/in/cristianopirolli"
+          class="contact-btn"
+          aria-label="Perfil LinkedIn"
+          title="LinkedIn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          🔗
+        </a>
+
+        <a
+          href="https://github.com/cristianopirolli"
+          class="contact-btn"
+          aria-label="Perfil GitHub"
+          title="GitHub"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          🐙
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Cristiano Pirolli</h4>
+          <p>
+            Especialista em desenvolvimento web premium. Criando soluções digitais que geram oportunidades reais para negócios em crescimento.
+          </p>
         </div>
-    </footer>
 
-    <script src="script.js"></script>
+        <div class="footer-section">
+          <h4>Serviços</h4>
+          <ul class="footer-links">
+            <li><a href="#services">Landing Pages</a></li>
+            <li><a href="#services">Sites Institucionais</a></li>
+            <li><a href="#services">Sistemas Web</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Navegação</h4>
+          <ul class="footer-links">
+            <li><a href="#hero">Início</a></li>
+            <li><a href="#portfolio">Portfólio</a></li>
+            <li><a href="#process">Processo</a></li>
+            <li><a href="#contact">Contato</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Conecte-se</h4>
+          <div class="footer-social">
+            <a href="https://linkedin.com/in/cristianopirolli" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+              in
+            </a>
+            <a href="https://github.com/cristianopirolli" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+              gh
+            </a>
+            <a href="https://wa.me/5511999999999" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+              wa
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 Cristiano Pirolli. Todos os direitos reservados.</p>
+        <p>Desenvolvido com ❤️ em São Paulo</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================
+       MODAL DE CONTATO
+       ============================================ -->
+  <div id="contactModal" class="contact-modal" style="display: none;">
+    <div class="modal-content">
+      <button class="modal-close" onclick="document.getElementById('contactModal').style.display='none'" aria-label="Fechar modal">✕</button>
+
+      <h2>Solicitar Orçamento</h2>
+      <p>Preencha os dados abaixo que entraremos em contato em breve.</p>
+
+      <form class="contact-form" id="contactForm">
+        <div class="form-group">
+          <label for="contactName">Nome Completo</label>
+          <input
+            type="text"
+            id="contactName"
+            name="name"
+            placeholder="Seu nome"
+            required
+            aria-label="Nome completo"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="contactEmail">Email</label>
+          <input
+            type="email"
+            id="contactEmail"
+            name="email"
+            placeholder="seu@email.com"
+            required
+            aria-label="Email"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="contactPhone">Telefone</label>
+          <input
+            type="tel"
+            id="contactPhone"
+            name="phone"
+            placeholder="(11) 99999-9999"
+            required
+            aria-label="Telefone"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="contactService">Tipo de Serviço</label>
+          <select id="contactService" name="service" required aria-label="Tipo de serviço">
+            <option value="">Selecione um serviço</option>
+            <option value="landing">Landing Page</option>
+            <option value="site">Site Institucional</option>
+            <option value="sistema">Sistema Web</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="contactMessage">Mensagem</label>
+          <textarea
+            id="contactMessage"
+            name="message"
+            placeholder="Conte-nos sobre seu projeto"
+            rows="4"
+            required
+            aria-label="Mensagem"
+          ></textarea>
+        </div>
+
+        <div class="form-message" id="contactMessage"></div>
+
+        <button type="submit" class="btn btn-primary btn-large">
+          Enviar Solicitação
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
