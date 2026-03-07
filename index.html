@@ -7,6 +7,7 @@
   <meta name="theme-color" content="#0a0e27">
   <title>Cristiano Pirolli | Especialista em Landing Pages e Desenvolvimento Web Premium</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
   <!-- ============================================
@@ -14,12 +15,8 @@
        ============================================ -->
   <nav class="navbar" role="navigation" aria-label="Navegação principal">
     <div class="navbar-content container">
-      <div class="navbar-logo">
-        <span>CP</span>
-      </div>
-
       <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu" aria-expanded="false">
-        ☰
+        <i data-lucide="menu" aria-hidden="true"></i>
       </button>
 
       <ul class="navbar-links" id="navbarLinks">
@@ -31,7 +28,7 @@
       </ul>
 
       <div class="navbar-cta">
-        <button class="btn btn-primary btn-small" onclick="document.getElementById('contactModal').style.display='flex'" aria-label="Solicitar orçamento">
+        <button class="btn btn-primary btn-small" onclick="openContactModal()" aria-label="Solicitar orçamento">
           Solicitar Orçamento
         </button>
       </div>
@@ -69,7 +66,7 @@
           </div>
 
           <div class="hero-ctas">
-            <button class="btn btn-primary btn-large" onclick="document.getElementById('contactModal').style.display='flex'">
+            <button class="btn btn-primary btn-large" onclick="openContactModal()">
               Começar Agora
             </button>
             <button class="btn btn-secondary btn-large" onclick="document.getElementById('portfolioSection').scrollIntoView({behavior: 'smooth'})">
@@ -80,8 +77,7 @@
 
         <div class="hero-visual">
           <div class="hero-visual-content">
-            <div class="hero-visual-icon">💻</div>
-            <p class="hero-visual-text">Desenvolvimento web estratégico</p>
+            <img class="hero-visual-image" src="assets/imagem1.png" alt="Ilustração de desenvolvimento web" loading="eager" decoding="async">
           </div>
         </div>
       </div>
@@ -101,7 +97,7 @@
       <div class="services-grid">
         <!-- Landing Pages -->
         <div class="service-card">
-          <div class="service-icon">🎯</div>
+          <div class="service-icon"><i data-lucide="target" aria-hidden="true"></i></div>
           <h3>Landing Pages</h3>
           <p>
             Páginas de conversão otimizadas para capturar leads e gerar vendas. Cada elemento é estrategicamente posicionado para máxima taxa de conversão.
@@ -116,7 +112,7 @@
 
         <!-- Sites Institucionais -->
         <div class="service-card">
-          <div class="service-icon">🏢</div>
+          <div class="service-icon"><i data-lucide="building-2" aria-hidden="true"></i></div>
           <h3>Sites Institucionais</h3>
           <p>
             Presença digital profissional que reflete a qualidade do seu negócio. Websites modernos que transmitem confiança e credibilidade.
@@ -131,7 +127,7 @@
 
         <!-- Sistemas Web -->
         <div class="service-card">
-          <div class="service-icon">⚙️</div>
+          <div class="service-icon"><i data-lucide="cog" aria-hidden="true"></i></div>
           <h3>Sistemas Web Sob Medida</h3>
           <p>
             Aplicações web customizadas para automatizar processos e aumentar produtividade. Desenvolvidas com tecnologias modernas e escaláveis.
@@ -219,49 +215,46 @@
         <p>Projetos que geraram resultados reais para nossos clientes</p>
       </div>
 
-      <div class="portfolio-grid">
+      <div class="portfolio-rotator" id="portfolioRotator">
+        <button class="portfolio-rotator-arrow prev" aria-label="Projeto anterior" data-portfolio-nav="prev">
+          <i data-lucide="chevron-left" aria-hidden="true"></i>
+        </button>
+
+        <button class="portfolio-rotator-arrow next" aria-label="Próximo projeto" data-portfolio-nav="next">
+          <i data-lucide="chevron-right" aria-hidden="true"></i>
+        </button>
+
+      <div class="portfolio-grid" id="portfolioGrid">
         <!-- Portal de Procedimentos JP Contábil -->
         <div class="portfolio-card">
           <div class="carousel-container">
             <div class="carousel-slide active">
-              <div class="carousel-slide-content">
-                <div class="carousel-slide-icon">📋</div>
-                <p>Dashboard de Procedimentos</p>
-              </div>
+              <img class="carousel-slide-image" src="assets/portallogin.png" alt="Tela de login do Portal JP Contábil" loading="lazy" decoding="async">
             </div>
             <div class="carousel-slide">
-              <div class="carousel-slide-content">
-                <div class="carousel-slide-icon">🔍</div>
-                <p>Busca Avançada e Filtros</p>
-              </div>
-            </div>
-            <div class="carousel-slide">
-              <div class="carousel-slide-content">
-                <div class="carousel-slide-icon">📊</div>
-                <p>Relatórios e Análises</p>
-              </div>
+              <img class="carousel-slide-image carousel-slide-image-portalhome" src="assets/portalhome.png" alt="Tela inicial do Portal JP Contábil" loading="lazy" decoding="async">
             </div>
 
-            <button class="carousel-arrow prev" aria-label="Slide anterior" data-carousel="carousel-1">❮</button>
-            <button class="carousel-arrow next" aria-label="Próximo slide" data-carousel="carousel-1">❯</button>
+            <button class="carousel-arrow prev" aria-label="Slide anterior" data-carousel="carousel-1"><i data-lucide="chevron-left" aria-hidden="true"></i></button>
+            <button class="carousel-arrow next" aria-label="Próximo slide" data-carousel="carousel-1"><i data-lucide="chevron-right" aria-hidden="true"></i></button>
 
             <div class="carousel-controls">
               <button class="carousel-dot active" data-carousel="carousel-1" data-slide="0" aria-label="Slide 1"></button>
               <button class="carousel-dot" data-carousel="carousel-1" data-slide="1" aria-label="Slide 2"></button>
-              <button class="carousel-dot" data-carousel="carousel-1" data-slide="2" aria-label="Slide 3"></button>
             </div>
           </div>
 
           <div class="portfolio-content">
+            <span class="portfolio-type-badge">Sistema Web</span>
             <h3>Portal de Procedimentos - JP Contábil</h3>
             <p class="portfolio-description">
-              Sistema web completo para gerenciamento e consulta de procedimentos contábeis. Desenvolvido com interface intuitiva, busca avançada e relatórios personalizados.
+              Plataforma interna para organizar procedimentos contábeis, tarefas, comunicados, reuniões, cursos e fluxos administrativos em um único ambiente, com controle de usuários e acompanhamento das rotinas.
             </p>
             <div class="portfolio-tags">
-              <span class="portfolio-tag">React</span>
-              <span class="portfolio-tag">Node.js</span>
-              <span class="portfolio-tag">PostgreSQL</span>
-              <span class="portfolio-tag">Dashboard</span>
+              <span class="portfolio-tag">Python</span>
+              <span class="portfolio-tag">Flask</span>
+              <span class="portfolio-tag">MySQL</span>
+              <span class="portfolio-tag">SQLAlchemy</span>
             </div>
           </div>
         </div>
@@ -270,47 +263,131 @@
         <div class="portfolio-card">
           <div class="carousel-container">
             <div class="carousel-slide active">
-              <div class="carousel-slide-content">
-                <div class="carousel-slide-icon">🚗</div>
-                <p>Gestão de Autoescolas</p>
-              </div>
+              <img class="carousel-slide-image" src="assets/trafegandologin.png" alt="Tela de login do sistema Trafegando" loading="lazy" decoding="async">
             </div>
             <div class="carousel-slide">
-              <div class="carousel-slide-content">
-                <div class="carousel-slide-icon">📅</div>
-                <p>Calendário de Aulas</p>
-              </div>
+              <img class="carousel-slide-image" src="assets/trafegandohome.png" alt="Tela inicial do sistema Trafegando" loading="lazy" decoding="async">
             </div>
             <div class="carousel-slide">
-              <div class="carousel-slide-content">
-                <div class="carousel-slide-icon">💼</div>
-                <p>CRM e Gestão de Clientes</p>
-              </div>
+              <img class="carousel-slide-image" src="assets/trafegandoaulas.png" alt="Tela de aulas e calendário do sistema Trafegando" loading="lazy" decoding="async">
+            </div>
+            <div class="carousel-slide">
+              <img class="carousel-slide-image" src="assets/trafegandoleads.png" alt="Tela de gestão de leads do sistema Trafegando" loading="lazy" decoding="async">
             </div>
 
-            <button class="carousel-arrow prev" aria-label="Slide anterior" data-carousel="carousel-2">❮</button>
-            <button class="carousel-arrow next" aria-label="Próximo slide" data-carousel="carousel-2">❯</button>
+            <button class="carousel-arrow prev" aria-label="Slide anterior" data-carousel="carousel-2"><i data-lucide="chevron-left" aria-hidden="true"></i></button>
+            <button class="carousel-arrow next" aria-label="Próximo slide" data-carousel="carousel-2"><i data-lucide="chevron-right" aria-hidden="true"></i></button>
 
             <div class="carousel-controls">
               <button class="carousel-dot active" data-carousel="carousel-2" data-slide="0" aria-label="Slide 1"></button>
               <button class="carousel-dot" data-carousel="carousel-2" data-slide="1" aria-label="Slide 2"></button>
               <button class="carousel-dot" data-carousel="carousel-2" data-slide="2" aria-label="Slide 3"></button>
+              <button class="carousel-dot" data-carousel="carousel-2" data-slide="3" aria-label="Slide 4"></button>
             </div>
           </div>
 
           <div class="portfolio-content">
+            <span class="portfolio-type-badge">SaaS</span>
             <h3>TRAFEGANDO - SaaS para Autoescolas</h3>
             <p class="portfolio-description">
-              Plataforma SaaS completa com CRM, calendário de aulas, gestão de alunos e relatórios. Solução escalável que atende centenas de autoescolas em todo Brasil.
+              Plataforma para autoescolas com CRM de leads, calendário de aulas e entregas, gestão financeira, permissões por usuário e visão operacional centralizada para acompanhamento diário.
             </p>
             <div class="portfolio-tags">
-              <span class="portfolio-tag">SaaS</span>
-              <span class="portfolio-tag">Vue.js</span>
-              <span class="portfolio-tag">Firebase</span>
-              <span class="portfolio-tag">CRM</span>
+              <span class="portfolio-tag">React</span>
+              <span class="portfolio-tag">TypeScript</span>
+              <span class="portfolio-tag">Vite</span>
+              <span class="portfolio-tag">TailwindCSS</span>
             </div>
           </div>
         </div>
+
+        <!-- Imóveis Prime -->
+        <div class="portfolio-card">
+          <div class="carousel-container">
+            <div class="carousel-slide active">
+              <img class="carousel-slide-image" src="assets/primehome.png" alt="Tela inicial do Imóveis Prime" loading="lazy" decoding="async">
+            </div>
+            <div class="carousel-slide">
+              <img class="carousel-slide-image" src="assets/oquevoceprocuraprime.png" alt="Sessão de busca de imóveis do Imóveis Prime" loading="lazy" decoding="async">
+            </div>
+            <div class="carousel-slide">
+              <img class="carousel-slide-image" src="assets/pesquisaimoveisprime.png" alt="Resultados de pesquisa de imóveis no Imóveis Prime" loading="lazy" decoding="async">
+            </div>
+            <div class="carousel-slide">
+              <img class="carousel-slide-image" src="assets/venderprime.png" alt="Sessão para anunciar imóvel no Imóveis Prime" loading="lazy" decoding="async">
+            </div>
+
+            <button class="carousel-arrow prev" aria-label="Slide anterior" data-carousel="carousel-3"><i data-lucide="chevron-left" aria-hidden="true"></i></button>
+            <button class="carousel-arrow next" aria-label="Próximo slide" data-carousel="carousel-3"><i data-lucide="chevron-right" aria-hidden="true"></i></button>
+
+            <div class="carousel-controls">
+              <button class="carousel-dot active" data-carousel="carousel-3" data-slide="0" aria-label="Slide 1"></button>
+              <button class="carousel-dot" data-carousel="carousel-3" data-slide="1" aria-label="Slide 2"></button>
+              <button class="carousel-dot" data-carousel="carousel-3" data-slide="2" aria-label="Slide 3"></button>
+              <button class="carousel-dot" data-carousel="carousel-3" data-slide="3" aria-label="Slide 4"></button>
+            </div>
+          </div>
+
+          <div class="portfolio-content">
+            <span class="portfolio-type-badge">Site</span>
+            <h3>Imóveis Prime</h3>
+            <p class="portfolio-description">
+              Portal imobiliário com apresentação de imóveis, filtros por perfil e localização, páginas de detalhes e foco em captação de leads qualificados.
+            </p>
+            <div class="portfolio-tags">
+              <span class="portfolio-tag">Site Imobiliário</span>
+              <span class="portfolio-tag">Busca por Região</span>
+              <span class="portfolio-tag">Captação de Leads</span>
+              <span class="portfolio-tag">Páginas de Imóvel</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Diveneto Contábil -->
+        <div class="portfolio-card">
+          <div class="carousel-container">
+            <div class="carousel-slide active">
+              <img class="carousel-slide-image" src="assets/divenetohome.png" alt="Página inicial do site Di Vêneto Contábil" loading="lazy" decoding="async">
+            </div>
+            <div class="carousel-slide">
+              <img class="carousel-slide-image" src="assets/diveneto2.png" alt="Segunda tela do site Di Vêneto Contábil" loading="lazy" decoding="async">
+            </div>
+            <div class="carousel-slide">
+              <img class="carousel-slide-image" src="assets/divenetometricas.png" alt="Tela de métricas do site Di Vêneto Contábil" loading="lazy" decoding="async">
+            </div>
+
+            <button class="carousel-arrow prev" aria-label="Slide anterior" data-carousel="carousel-4"><i data-lucide="chevron-left" aria-hidden="true"></i></button>
+            <button class="carousel-arrow next" aria-label="Próximo slide" data-carousel="carousel-4"><i data-lucide="chevron-right" aria-hidden="true"></i></button>
+
+            <div class="carousel-controls">
+              <button class="carousel-dot active" data-carousel="carousel-4" data-slide="0" aria-label="Slide 1"></button>
+              <button class="carousel-dot" data-carousel="carousel-4" data-slide="1" aria-label="Slide 2"></button>
+              <button class="carousel-dot" data-carousel="carousel-4" data-slide="2" aria-label="Slide 3"></button>
+            </div>
+          </div>
+
+          <div class="portfolio-content">
+            <span class="portfolio-type-badge">Landing Page</span>
+            <h3>Di Vêneto Contábil</h3>
+            <p class="portfolio-description">
+              Site institucional para escritório contábil com apresentação de serviços, canais de contato e apoio à captação de novos clientes.
+            </p>
+            <div class="portfolio-tags">
+              <span class="portfolio-tag">Site Institucional</span>
+              <span class="portfolio-tag">Serviços Contábeis</span>
+              <span class="portfolio-tag">Captação de Leads</span>
+              <span class="portfolio-tag">Contato Direto</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-rotator-dots" id="portfolioRotatorDots" aria-label="Navegação de projetos">
+        <button class="portfolio-rotator-dot active" data-portfolio-dot="0" aria-label="Mostrar projeto 1"></button>
+        <button class="portfolio-rotator-dot" data-portfolio-dot="1" aria-label="Mostrar projeto 2"></button>
+        <button class="portfolio-rotator-dot" data-portfolio-dot="2" aria-label="Mostrar projeto 3"></button>
+        <button class="portfolio-rotator-dot" data-portfolio-dot="3" aria-label="Mostrar projeto 4"></button>
+      </div>
       </div>
     </div>
   </section>
@@ -327,7 +404,7 @@
 
       <div class="benefits-grid">
         <div class="benefit-item">
-          <div class="benefit-icon">⚡</div>
+          <div class="benefit-icon"><i data-lucide="zap" aria-hidden="true"></i></div>
           <div class="benefit-content">
             <h3>Performance Otimizada</h3>
             <p>Websites que carregam em milissegundos, melhorando SEO e experiência do usuário.</p>
@@ -335,7 +412,7 @@
         </div>
 
         <div class="benefit-item">
-          <div class="benefit-icon">🎯</div>
+          <div class="benefit-icon"><i data-lucide="target" aria-hidden="true"></i></div>
           <div class="benefit-content">
             <h3>Foco em Conversão</h3>
             <p>Cada elemento é estrategicamente posicionado para maximizar leads e vendas.</p>
@@ -343,7 +420,7 @@
         </div>
 
         <div class="benefit-item">
-          <div class="benefit-icon">📱</div>
+          <div class="benefit-icon"><i data-lucide="smartphone" aria-hidden="true"></i></div>
           <div class="benefit-content">
             <h3>Responsivo 100%</h3>
             <p>Experiência perfeita em desktop, tablet e mobile. Seus clientes em qualquer dispositivo.</p>
@@ -351,7 +428,7 @@
         </div>
 
         <div class="benefit-item">
-          <div class="benefit-icon">🔒</div>
+          <div class="benefit-icon"><i data-lucide="shield-check" aria-hidden="true"></i></div>
           <div class="benefit-content">
             <h3>Segurança Premium</h3>
             <p>Implementação de melhores práticas de segurança e conformidade com regulamentações.</p>
@@ -359,7 +436,7 @@
         </div>
 
         <div class="benefit-item">
-          <div class="benefit-icon">📈</div>
+          <div class="benefit-icon"><i data-lucide="trending-up" aria-hidden="true"></i></div>
           <div class="benefit-content">
             <h3>Escalabilidade</h3>
             <p>Arquitetura preparada para crescer com seu negócio sem comprometer performance.</p>
@@ -367,7 +444,7 @@
         </div>
 
         <div class="benefit-item">
-          <div class="benefit-icon">🤝</div>
+          <div class="benefit-icon"><i data-lucide="handshake" aria-hidden="true"></i></div>
           <div class="benefit-content">
             <h3>Suporte Contínuo</h3>
             <p>Acompanhamento pós-entrega, manutenção e melhorias contínuas para seu sucesso.</p>
@@ -383,12 +460,20 @@
   <section class="newsletter">
     <div class="container">
       <div class="newsletter-content">
-        <h2>Receba Insights de Web Design</h2>
+        <h2>Entre na Lista de Interesse</h2>
         <p>
-          Dicas, estratégias e tendências de desenvolvimento web diretamente no seu email.
+          Deixe seus dados para recebermos seu interesse e entrarmos em contato para futuros projetos.
         </p>
 
-        <form class="newsletter-form" id="newsletterForm">
+        <form
+          class="newsletter-form"
+          id="newsletterForm"
+          action="https://formspree.io/f/mgonwjdw"
+          method="POST"
+        >
+          <input type="hidden" name="_subject" value="Novo lead de interesse - site Cristiano Pirolli">
+          <input type="hidden" name="origem" value="Secao Lista de Interesse">
+
           <div class="form-group">
             <label for="newsletterName">Seu Nome</label>
             <input
@@ -411,6 +496,29 @@
               required
               aria-label="Seu email"
             >
+          </div>
+
+          <div class="form-group">
+            <label for="newsletterWhatsapp">WhatsApp</label>
+            <input
+              type="tel"
+              id="newsletterWhatsapp"
+              name="whatsapp"
+              placeholder="(11) 99999-9999"
+              required
+              aria-label="Seu WhatsApp"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="newsletterService">Serviço de Interesse</label>
+            <select id="newsletterService" name="service_interest" required aria-label="Serviço de interesse">
+              <option value="">Selecione um serviço</option>
+              <option value="Landing Page">Landing Page</option>
+              <option value="Site Institucional">Site Institucional</option>
+              <option value="Sistema Web">Sistema Web</option>
+              <option value="Consultoria">Consultoria</option>
+            </select>
           </div>
 
           <div class="form-message" id="newsletterMessage"></div>
@@ -444,7 +552,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          💬
+          <i data-lucide="message-circle" aria-hidden="true"></i>
         </a>
 
         <a
@@ -453,7 +561,7 @@
           aria-label="Enviar email"
           title="Email"
         >
-          ✉️
+          <i data-lucide="mail" aria-hidden="true"></i>
         </a>
 
         <a
@@ -464,7 +572,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          🔗
+          <i data-lucide="linkedin" aria-hidden="true"></i>
         </a>
 
         <a
@@ -475,7 +583,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          🐙
+          <i data-lucide="github" aria-hidden="true"></i>
         </a>
       </div>
     </div>
@@ -517,13 +625,13 @@
           <h4>Conecte-se</h4>
           <div class="footer-social">
             <a href="https://linkedin.com/in/cristianopirolli" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-              in
+              <i data-lucide="linkedin" aria-hidden="true"></i>
             </a>
             <a href="https://github.com/cristianopirolli" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
-              gh
+              <i data-lucide="github" aria-hidden="true"></i>
             </a>
             <a href="https://wa.me/5511999999999" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
-              wa
+              <i data-lucide="message-circle" aria-hidden="true"></i>
             </a>
           </div>
         </div>
@@ -531,7 +639,7 @@
 
       <div class="footer-bottom">
         <p>&copy; 2024 Cristiano Pirolli. Todos os direitos reservados.</p>
-        <p>Desenvolvido com ❤️ em São Paulo</p>
+        <p>Desenvolvido em São Paulo</p>
       </div>
     </div>
   </footer>
@@ -539,9 +647,9 @@
   <!-- ============================================
        MODAL DE CONTATO
        ============================================ -->
-  <div id="contactModal" class="contact-modal" style="display: none;">
+  <div id="contactModal" class="contact-modal" style="display: none;" aria-hidden="true">
     <div class="modal-content">
-      <button class="modal-close" onclick="document.getElementById('contactModal').style.display='none'" aria-label="Fechar modal">✕</button>
+      <button class="modal-close" onclick="closeContactModal()" aria-label="Fechar modal"><i data-lucide="x" aria-hidden="true"></i></button>
 
       <h2>Solicitar Orçamento</h2>
       <p>Preencha os dados abaixo que entraremos em contato em breve.</p>
@@ -606,7 +714,7 @@
           ></textarea>
         </div>
 
-        <div class="form-message" id="contactMessage"></div>
+        <div class="form-message" id="contactFormMessage"></div>
 
         <button type="submit" class="btn btn-primary btn-large">
           Enviar Solicitação
