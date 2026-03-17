@@ -1,5 +1,5 @@
 /**
- * CRISTIANO PIROLLI - LANDING PAGE
+ * ATLAS DIGITAL - LANDING PAGE
  * Script.js - Interatividade, Carrossel e Validações
  */
 
@@ -231,6 +231,8 @@ document.addEventListener('DOMContentLoaded', () => {
   new Carousel('carousel-2');
   new Carousel('carousel-3');
   new Carousel('carousel-4');
+  new Carousel('carousel-5');
+  new Carousel('carousel-6');
   new PortfolioRotator();
 });
 
@@ -638,4 +640,4 @@ if ('requestIdleCallback' in window) {
 // INICIALIZAÇÃO
 // ============================================
 
-console.log('Landing Page Cristiano Pirolli - Script carregado com sucesso');
+console.log('Landing Page ATLAS DIGITAL - Script carregado com sucesso');
